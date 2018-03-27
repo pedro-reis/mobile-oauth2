@@ -8,49 +8,65 @@
 		<link rel="stylesheet" href="js/jquery.mobile-1.4.5.min.css">
 		<link rel="stylesheet" href="js/demos/_assets/css/jqm-demos.css">		
         <link rel="stylesheet" type="text/css" href="css/index.css" />
-		<script src="js/demos/js/jquery.min.js"></script>
+		<script src="js/demos/js/jquery.js"></script>
 		<script src="js/jquery.mobile-1.4.5.min.js"></script>
         <title>mobile-oAuth2</title>
     </head>
     <body>
 			<div data-role="navbar">
 				<ul>
-					<li><a href="form.html" class="ui-btn-active">Test Form</a></li>
-					<li><a href="about.html">About</a></li>
+					<li><a href="#" class="ui-btn-active" onclick="menu_switch('#page1')">Test Form</a></li>
+					<li><a href="#" onclick="menu_switch('#page2')">About</a></li>
 				</ul>
 			</div>
 
 		<div class="app">
 
-            <h1>mobile oAuth2</h1>
-						
-			<br />			
-						
-			<form name="form" id="form">
-			
-				<label for="textinput-disabled">Text Input:</label>
-				<input disabled="disabled" type="text" name="textinput-disabled" id="textinput-disabled" placeholder="Text input" value="">
-			
-				<br /><br />
-			
-				<label for="text-basic">Text input:</label>
-				<input type="text" name="text-basic" id="text-basic" value="">
-			
-				<br /><br />
+			<div id="page1">
+		
+				<h1>mobile oAuth2</h1>
+							
+				<br />			
+							
+				<form name="form" id="form">
+				
+					<label for="textinput-disabled">Text Input:</label>
+					<input disabled="disabled" type="text" name="textinput-disabled" id="textinput-disabled" placeholder="Text input" value="">
+				
+					<br /><br />
+				
+					<label for="text-basic">Text input:</label>
+					<input type="text" name="text-basic" id="text-basic" value="" onchange="func_copy()">
+				
+					<br /><br />
 
-				<input type="button" name="button" id="button" value="Button">
+					<input type="button" name="button" id="button" value="Button">
 
+					
+				
+				</form>
+				
+			</div>
+			
+			<div id="page2" style="visibility: hidden; display: none">
+				
 				
 			
-			</form>
+			
+			
+			</div>
+			
         </div>
 		
 		<script>
-			$("#button").trigger('click');
+		
+			function menu_switch (page)
+			{
+				$('#page1').hide();
+				$('#page2').hide();
+				$(page).show();
+			}
 			
-			$(document).on( "vclick", "#button", function() {
-				$( this ).append( "<span style='color:#108040;'> vclick fired... </span>" );
-			});
 		
 		</script>
 		

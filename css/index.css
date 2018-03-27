@@ -24,11 +24,13 @@ body {
     top:10%;
 /*
     height:50px;                   
+*/
+
     width:225px;
+
     padding:180px 0px 0px 0px;   
     margin:-115px 0px 0px -112px;
-	
-*/
+
     text-align:center;
                                    /* offset horizontal: half of text area width */
 }
