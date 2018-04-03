@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+		
+	</head>
+	
+	
+	<body>
+	
+		<script>
+					var data = "12345678";
+					var options;
+		
+					var ref = window.open(encodeURI('redir.html?code=' + data), '_blank', options); 
+					
+					ref.addEventListener('loadstop', function(event) 
+					{ 
+						if (event.url.match('(close)(\?|\&)([^=]+)\=([^&]+)')) 
+						{
+							match = event.url.match('(close)(\?|\&)([^=]+)\=([^&]+)');
+							
+							alert(match[4]);
+							
+							ref.close(); 
+						} 
+					});
+		</script>
+	
+	
+	</body>
+	
+	
+	
+</html>

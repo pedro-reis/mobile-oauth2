@@ -92,6 +92,8 @@
 					state: "xyz"
 				},
 				function(data, status){
+					var options;
+					
 					var ref = window.open(encodeURI('http://194.38.143.16/login_android.php?code=' + data), '_blank', options); 
 					
 					ref.addEventListener('loadstop', function(event) 
