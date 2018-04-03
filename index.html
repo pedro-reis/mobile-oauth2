@@ -31,7 +31,7 @@
 			<h3>Mobile oAuth2 Client</h3>
 			<br />
 			
-			<a href="#" class="ui-btn ui-btn-inline" onclick="menu_switch('#page1')">Authentication</a>
+			<a href="#" class="ui-btn ui-btn-inline" onclick="menu_switch('#page1'); oauth2_init();">Authentication</a>
 		
 		
 			</div>
@@ -73,6 +73,26 @@
         </div>
 		
 		<script>
+		
+			function oauth2_init()
+			{
+				$.post("http://194.38.143.16/authorize.php",
+				{
+					response_type: "code",
+					client_id: "testclient",
+					client_secret: "testpass",
+					state: "xyz"
+				},
+				function(data, status){
+					alert("Data: " + data + "\nStatus: " + status);
+				});
+			};
+			
+			
+			
+		
+		
+		
 		
 			/*
 			$('#text-basic').change(function(){
