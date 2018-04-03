@@ -27,14 +27,13 @@
 
 				<div id="deviceready" class="blink">
 				<img src="i/logo.png" border="0" />
-			</div>
-			<br />
-			<h3>Mobile oAuth2 Client</h3>
-			<br />
+				</div>
+				<br />
+				<h3>Mobile oAuth2 Client</h3>
+				<br />
+				
+				<a href="#" class="ui-btn ui-btn-inline" onclick="menu_switch('#page1'); oauth2_init();">Authentication</a>
 			
-			<a href="#" class="ui-btn ui-btn-inline" onclick="menu_switch('#page1'); oauth2_init();">Authentication</a>
-		
-		
 			</div>
 		
 			<div id="page1" style="display: none">
@@ -106,7 +105,7 @@
 							
 							authToken = match[4];
 							
-							$('#logs').innerHTML = "<b>Token:</b> " + match[4];
+							$('#logs').html("<b>Token:</b> " + match[4]);
 							
 							ref.close(); 
 						}
