@@ -80,7 +80,7 @@
 		<script>
 		
 			
-			//var autorization-code;
+			var authToken = '';
 		
 			function oauth2_init()
 			{
@@ -102,9 +102,13 @@
 						{
 							match = event.url.match(/(\/?[^?]*?)(\?)(token=)(.*)/);
 							
-							alert(match[4]);
+							//alert(match[4]);
 							
-							//ref.close(); 
+							authToken = match[4];
+							
+							$('#logs').innerHTML = "<b>Token:</b> " + match[4];
+							
+							ref.close(); 
 						}
 						/*
 						if (event.url.match('(close)(\?|\&)([^=]+)\=([^&]+)')) 
