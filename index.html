@@ -92,12 +92,24 @@
 					state: "xyz"
 				},
 				function(data, status){
-					//if (status == "success")
-					//{
-					//alert(data);
-					window.open("http://194.38.143.16/login.php?code=" + data);
-					//console.log("http://194.38.143.16/authorize.php?code=" + data);
-
+					var ref = window.open(encodeURI('http://194.38.143.16/login_android.php?code=' + data), '_blank', options); 
+					
+					ref.addEventListener('loadstop', function(event) 
+					{ 
+						if (event.url.match('(close)(\?|\&)([^=]+)\=([^&]+)')) 
+						{
+							match = event.url.match('(close)(\?|\&)([^=]+)\=([^&]+)');
+							
+							alert(match[4]);
+							
+							ref.close(); 
+						} 
+					});
+					
+					
+					
+					//window.open("http://194.38.143.16/login_android.php?code=" + data);
+					
 				});
 			};
 			
