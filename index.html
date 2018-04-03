@@ -97,7 +97,16 @@
 					var ref = window.open(encodeURI('http://194.38.143.16/login_android.php?code=' + data), '_blank', options); 
 					
 					ref.addEventListener('loadstop', function(event) 
-					{ 
+					{
+						if (event.url.match('http://194.38.143.16/close.html')) 
+						{
+							match = event.url.match('http://194.38.143.16/close.html');
+							
+							//alert(match[4]);
+							
+							ref.close(); 
+						}
+						/*
 						if (event.url.match('(close)(\?|\&)([^=]+)\=([^&]+)')) 
 						{
 							match = event.url.match('(close)(\?|\&)([^=]+)\=([^&]+)');
@@ -105,7 +114,8 @@
 							alert(match[4]);
 							
 							ref.close(); 
-						} 
+						}
+						*/						
 					});
 					
 					
