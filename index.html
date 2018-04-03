@@ -98,13 +98,13 @@
 					
 					ref.addEventListener('loadstop', function(event) 
 					{
-						if (event.url.match('http://194.38.143.16/close.html')) 
+						if (event.url.match(/(\/?[^?]*?)(\?)(token=)(.*)/)) 
 						{
-							match = event.url.match('http://194.38.143.16/close.html');
+							match = event.url.match(/(\/?[^?]*?)(\?)(token=)(.*)/);
 							
-							//alert(match[4]);
+							alert(match[4]);
 							
-							ref.close(); 
+							//ref.close(); 
 						}
 						/*
 						if (event.url.match('(close)(\?|\&)([^=]+)\=([^&]+)')) 
