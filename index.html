@@ -10,6 +10,7 @@
         <link rel="stylesheet" type="text/css" href="css/index.css" />
 		<script src="js/demos/js/jquery.js"></script>
 		<script src="js/jquery.mobile-1.4.5.min.js"></script>
+		<!-- <script src="js/cordova.oauth2.js"></script> -->
         <title>mobile-oAuth2</title>
     </head>
     <body>
@@ -44,6 +45,10 @@
 							
 				<form name="form" id="form">
 				
+				
+					<div id="logs"></div>
+				
+				<!--
 					<label for="textinput-disabled">Text Input:</label>
 					<input  type="text" name="textinput-disabled" id="textinput-disabled" placeholder="Text input" value="">
 				
@@ -55,7 +60,7 @@
 					<br /><br />
 
 					<input type="button" name="button" id="button" value="Button" onclick="func_copy()">
-
+				-->
 					
 				
 				</form>
@@ -74,6 +79,9 @@
 		
 		<script>
 		
+			
+			//var autorization-code;
+		
 			function oauth2_init()
 			{
 				$.post("http://194.38.143.16/authorize.php",
@@ -84,10 +92,37 @@
 					state: "xyz"
 				},
 				function(data, status){
-					alert("Data: " + data + "\nStatus: " + status);
+					//if (status == "success")
+					//{
+					window.open("http://194.38.143.16/authorize.php?code=" + data);
+
 				});
 			};
 			
+			
+			
+			/*
+			function oauth2_init() {
+				$.oauth2({
+					auth_url: 'http://194.38.143.16/authorize.php',           // required
+					response_type: 'code',      // required - "code"/"token"
+					token_url: 'http://194.38.143.16/token.php',          // required if response_type = 'code'
+					logout_url: '',         // recommended if available
+					client_id: 'testclient',          // required
+					client_secret: 'testepass',      // required if response_type = 'code'
+					redirect_uri: '#',       // required - some dummy url
+					other_params: {state: 'xyz'}        // optional params object for scope, state, display...
+				}, function(token, response){
+					// do something with token or response
+					$("#logs").append("<p class='success'><b>access_token: </b>"+token+"</p>");
+					$("#logs").append("<p class='success'><b>response: </b>"+JSON.stringify(response)+"</p>");
+				}, function(error, response){
+					// do something with error object
+					$("#logs").append("<p class='error'><b>error: </b>"+JSON.stringify(error)+"</p>");
+					$("#logs").append("<p class='error'><b>response: </b>"+JSON.stringify(response)+"</p>");
+				}); 
+			}
+			*/
 			
 			
 		
