@@ -16,8 +16,7 @@
     <body>
 			<div id="page-nav" data-role="navbar" style="display: none">
 				<ul>
-					<li><a href="#" class="ui-btn-active" onclick="menu_switch('#page1')">oAuth2</a></li>
-					<li><a href="#" onclick="menu_switch('#page2')">About</a></li>
+					<li><a href="#" class="ui-btn-active">mobile-oAuth2 Example App</a></li>
 				</ul>
 			</div>
 
@@ -33,6 +32,12 @@
 				<br />
 				
 				<a href="#" class="ui-btn ui-btn-inline" onclick="menu_switch('#page1'); oauth2_init();">Authentication</a>
+				
+				<br />
+				
+				<p>Pedro Reis</p>
+				<p>Rui Dias</p>
+				<p>Tiago Guerreiro</p>
 			
 			</div>
 		
@@ -46,30 +51,21 @@
 				
 					<div id="logs"></div>
 					
-					<br /><br />
-				
-					<a id="use-token" href="" class="ui-btn ui-btn-inline" onclick="">Use Token</a>
-				
+					<br />
+	
+					<i id="resource"></i>
+					
+					<br />
+
+					<div id="data"></div>
+								
 				</form>
 				
-			</div>
-			
-			<div id="page2" style="display: none">
-			
-				<br /><br />
-				
-				<p>Pedro Reis</p>
-				<p>Rui Dias</p>
-				<p>Tiago Guerreiro</p>
-			
-			
-			
 			</div>
 			
         </div>
 		
 		<script>
-		
 			
 			var authToken = '';
 		
@@ -101,80 +97,34 @@
 							
 							ref.close(); 
 							
-							$("#use-toekn").attr("href", "http://sgi-oauth2.cloudlink.biz/resource.php?token=" + match[4]);
-						}
-						/*
-						if (event.url.match('(close)(\?|\&)([^=]+)\=([^&]+)')) 
-						{
-							match = event.url.match('(close)(\?|\&)([^=]+)\=([^&]+)');
+							$("#resource").html("http://sgi-oauth2.cloudlink.biz/resource.php?token=" + match[4]);
 							
-							alert(match[4]);
 							
-							ref.close(); 
+							$.getJSON( "http://sgi-oauth2.cloudlink.biz/resource.php?token=" + match[4] , function( data ) 
+							{
+								var items = [];
+								$.each( data, function( key, val ) {
+									items.push( "<li id='" + key + "'>" + val + "</li>" );
+								});
+ 
+								$( "<ul/>", {
+									"class": "my-new-list",
+									html: items.join( "" )
+								}).appendTo( "#data" );
+							});
+							
+							
+							
+							
 						}
-						*/						
+				
 					});
 					
-					
-					
-					//window.open("http://194.38.143.16/login_android.php?code=" + data);
+
 					
 				});
 			};
 			
-			
-			
-			/*
-			function oauth2_init() {
-				$.oauth2({
-					auth_url: 'http://194.38.143.16/authorize.php',           // required
-					response_type: 'code',      // required - "code"/"token"
-					token_url: 'http://194.38.143.16/token.php',          // required if response_type = 'code'
-					logout_url: '',         // recommended if available
-					client_id: 'testclient',          // required
-					client_secret: 'testepass',      // required if response_type = 'code'
-					redirect_uri: '#',       // required - some dummy url
-					other_params: {state: 'xyz'}        // optional params object for scope, state, display...
-				}, function(token, response){
-					// do something with token or response
-					$("#logs").append("<p class='success'><b>access_token: </b>"+token+"</p>");
-					$("#logs").append("<p class='success'><b>response: </b>"+JSON.stringify(response)+"</p>");
-				}, function(error, response){
-					// do something with error object
-					$("#logs").append("<p class='error'><b>error: </b>"+JSON.stringify(error)+"</p>");
-					$("#logs").append("<p class='error'><b>response: </b>"+JSON.stringify(response)+"</p>");
-				}); 
-			}
-			*/
-			
-			
-		
-		
-		
-		
-			/*
-			$('#text-basic').change(function(){
-				$('#textinput-disabled').val('ssss');
-		
-			});
-			*/
-		
-
-			function func_copy ()
-			{
-				$('#textinput-disabled').val($('#text-basic').val());
-			
-			}
-			
-		
-			function menu_switch (page)
-			{
-				$('#page0').hide();
-				$('#page1').hide();
-				$('#page2').hide();
-				$('#page-nav').show();
-				$(page).show();
-			};
 			
 		
 		</script>
@@ -182,8 +132,5 @@
 		
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript">
-            <!-- app.initialize(); -->
-        </script>
     </body>
 </html>
