@@ -16,7 +16,7 @@
     <body>
 			<div id="page-nav" data-role="navbar" style="display: none">
 				<ul>
-					<li><a href="#" class="ui-btn-active" onclick="menu_switch('#page1')">Test Form</a></li>
+					<li><a href="#" class="ui-btn-active" onclick="menu_switch('#page1')">oAuth2</a></li>
 					<li><a href="#" onclick="menu_switch('#page2')">About</a></li>
 				</ul>
 			</div>
@@ -44,31 +44,23 @@
 							
 				<form name="form" id="form">
 				
-				
 					<div id="logs"></div>
-				
-				<!--
-					<label for="textinput-disabled">Text Input:</label>
-					<input  type="text" name="textinput-disabled" id="textinput-disabled" placeholder="Text input" value="">
-				
-					<br /><br />
-				
-					<label for="text-basic">Text input:</label>
-					<input type="text" name="text-basic" id="text-basic" value="" >
-				
-					<br /><br />
-
-					<input type="button" name="button" id="button" value="Button" onclick="func_copy()">
-				-->
 					
+					<br /><br />
+				
+					<a id="use-token" href="" class="ui-btn ui-btn-inline" onclick="">Use Token</a>
 				
 				</form>
 				
 			</div>
 			
 			<div id="page2" style="display: none">
+			
+				<br /><br />
 				
-				
+				<p>Pedro Reis</p>
+				<p>Rui Dias</p>
+				<p>Tiago Guerreiro</p>
 			
 			
 			
@@ -83,7 +75,7 @@
 		
 			function oauth2_init()
 			{
-				$.post("http://194.38.143.16/authorize.php",
+				$.post("http://sgi-oauth2.cloudlink.biz/authorize.php",
 				{
 					response_type: "code",
 					client_id: "testclient",
@@ -93,7 +85,7 @@
 				function(data, status){
 					var options;
 					
-					var ref = window.open(encodeURI('http://194.38.143.16/login_android.php?code=' + data), '_blank', options); 
+					var ref = window.open(encodeURI('http://sgi-oauth2.cloudlink.biz/login_android.php?code=' + data), '_blank', options); 
 					
 					ref.addEventListener('loadstop', function(event) 
 					{
@@ -108,6 +100,8 @@
 							$('#logs').html("<b>Token:</b> " + match[4]);
 							
 							ref.close(); 
+							
+							$("#use-toekn").attr("href", "http://sgi-oauth2.cloudlink.biz/resource.php?token=" + match[4]);
 						}
 						/*
 						if (event.url.match('(close)(\?|\&)([^=]+)\=([^&]+)')) 
