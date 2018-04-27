@@ -51,11 +51,11 @@
 				
 					<div id="logs"></div>
 					
-					<br />
+					<br /><br />
 	
 					<i id="resource"></i>
 					
-					<br />
+					<br /><br />
 
 					<div id="data"></div>
 								
@@ -93,23 +93,23 @@
 							
 							authToken = match[4];
 							
-							$('#logs').html("<b>Token:</b> " + match[4]);
+							$('#logs').html("<b>Token</b><br /> " + match[4]);
 							
 							ref.close(); 
 							
-							$("#resource").html("<b>Resource Url:</b> http://sgi-oauth2.cloudlink.biz/resource.php?token=" + match[4]);
+							$("#resource").html("<b>Resource Url</b><br /> http://sgi-oauth2.cloudlink.biz/resource.php?token=" + match[4]);
 							
 							
 							$.getJSON( "http://sgi-oauth2.cloudlink.biz/resource.php?token=" + match[4] , function( data ) 
 							{
 								var items = [];
 								
-								$( "#data" ).append( "<table>" );
+								$( "#data" ).append( '<table align="center">' );
 								
-								$( "#data" ).append( "<tr><td><b>Key</b></td><td><b>Value</b></td></tr>" );
+								$( "#data" ).append( "<tr><td><b>Key</b></td><td>&nbsp;</td><td><b>Value</b></td></tr>" );
 								
 								$.each( data, function( key, val ) {
-									$( "#data" ).append( "<tr><td>" + key + "</td><td>" + val + "</td></tr>" );
+									$( "#data" ).append( "<tr><td>" + key + "</td><td>&nbsp;</td><td>" + val + "</td></tr>" );
 								});
  
 								$( "#data" ).append( "</table>" );
