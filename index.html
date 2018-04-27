@@ -71,7 +71,7 @@
 		
 			function oauth2_init()
 			{
-				$.post("http://sgi-oauth2.cloudlink.biz/authorize.php",
+				$.post("https://sgi-oauth2.cloudlink.biz/authorize.php",
 				{
 					response_type: "code",
 					client_id: "testclient",
@@ -81,7 +81,7 @@
 				function(data, status){
 					var options;
 					
-					var ref = window.open(encodeURI('http://sgi-oauth2.cloudlink.biz/login_android.php?code=' + data), '_blank', options); 
+					var ref = window.open(encodeURI('https://sgi-oauth2.cloudlink.biz/login_android.php?code=' + data), '_blank', options); 
 					
 					ref.addEventListener('loadstop', function(event) 
 					{
@@ -97,10 +97,10 @@
 							
 							ref.close(); 
 							
-							$("#resource").html("<b>Resource Url</b><br /> http://sgi-oauth2.cloudlink.biz/resource.php?token=" + match[4]);
+							$("#resource").html("<b>Resource Url</b><br /> https://sgi-oauth2.cloudlink.biz/resource.php?token=" + match[4]);
 							
 							
-							$.getJSON( "http://sgi-oauth2.cloudlink.biz/resource.php?token=" + match[4] , function( data ) 
+							$.getJSON( "https://sgi-oauth2.cloudlink.biz/resource.php?token=" + match[4] , function( data ) 
 							{
 								var items = [];
 								
