@@ -11,12 +11,12 @@
 		<script src="js/demos/js/jquery.js"></script>
 		<script src="js/jquery.mobile-1.4.5.min.js"></script>
 		<!-- <script src="js/cordova.oauth2.js"></script> -->
-        <title>mobile-oAuth2</title>
+        <title>mobile-OAuth2</title>
     </head>
     <body>
 			<div id="page-nav" data-role="navbar" style="display: none">
 				<ul>
-					<li><a href="#" class="ui-btn-active">mobile-oAuth2 Example App</a></li>
+					<li><a href="#" class="ui-btn-active">mobile-OAuth2 Example App</a></li>
 				</ul>
 			</div>
 
@@ -28,7 +28,7 @@
 				<img src="i/logo.png" border="0" />
 				</div>
 				<br />
-				<h3>Mobile oAuth2 Client</h3>
+				<h3>Mobile OAuth2 Client</h3>
 				<br />
 				
 				<a href="#" class="ui-btn ui-btn-inline" onclick="menu_switch('#page1'); oauth2_init();">Authentication</a>
@@ -43,7 +43,7 @@
 		
 			<div id="page1" style="display: none">
 		
-				<h1>mobile oAuth2</h1>
+				<h1>mobile OAuth2</h1>
 							
 				<br />			
 							
@@ -97,20 +97,22 @@
 							
 							ref.close(); 
 							
-							$("#resource").html("http://sgi-oauth2.cloudlink.biz/resource.php?token=" + match[4]);
+							$("#resource").html("<b>Resource Url:</b> http://sgi-oauth2.cloudlink.biz/resource.php?token=" + match[4]);
 							
 							
 							$.getJSON( "http://sgi-oauth2.cloudlink.biz/resource.php?token=" + match[4] , function( data ) 
 							{
 								var items = [];
+								
+								$( "#data" ).append( "<table>" );
+								
+								$( "#data" ).append( "<tr><td><b>Key</b></td><td><b>Value</b></td></tr>" );
+								
 								$.each( data, function( key, val ) {
-									items.push( "<li id='" + key + "'>" + val + "</li>" );
+									$( "#data" ).append( "<tr><td>" + key + "</td><td>" + val + "</td></tr>" );
 								});
  
-								$( "<ul/>", {
-									"class": "my-new-list",
-									html: items.join( "" )
-								}).appendTo( "#data" );
+								$( "#data" ).append( "</table>" );
 							});
 							
 							
